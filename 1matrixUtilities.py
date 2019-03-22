@@ -23,4 +23,33 @@ class Matrix:
                 self.elems.append(arg)
             else:
                 raise ValueError('inconsistant dimensions')
+
+    #repr string allows for more
+    #readable representation when
+    #printing
+    def __repr__(self):
+        result = ''
+        for i in range(self.rows):
+            #list of all elements in one row
+            row = [str(self[j][i]) for
+                   j in range(self.cols)]
+            #append string of row to result
+            result += ' '.join(row) + '\n'
+        return f'{result}{self.rows}x{self.cols} Matrix'
+
+    #rows and cols properties
+    #allow for more readable syntax
+    @property
+    def rows(self):
+        return len(self.elems[0])
+
+    @property
+    def cols(self):
+        return len(self.elems)
+
+    #allows matrices to be indexed
+    #and spliced
+    def __getitem__(self,key):
+        return self.elems[key]
+    
                 
